@@ -5,11 +5,11 @@ import { Routes, Route, Link } from "react-router-dom";
 import Users from "./components/Users";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
+import ErrorPage from "./components/ErrorPage";
 
 function App() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
-
 
   useEffect(() => {
     //   fetch from randomuser.me
@@ -23,15 +23,14 @@ function App() {
       });
   }, []);
 
-
   return (
     <div>
       <Navbar />
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/users" element={<Users users={users}/>} />
-        {/* <Route path="/about" element={<About />} /> */}
+        <Route path="/users" element={<Users users={users} />} />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>
   );
