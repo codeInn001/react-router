@@ -6,6 +6,9 @@ import Users from "./components/Users";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import ErrorPage from "./components/ErrorPage";
+import ErrorBoundaryPage from "./components/ErrorBoundaryPage";
+import Fallback from "./components/Fallback";
+import { ErrorBoundary } from "react-error-boundary";
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -19,19 +22,31 @@ function App() {
       .then((data) => {
         setUsers(data.results);
         setLoading(true);
-        console.log(data, users);
+        
       });
   }, []);
+
+  function handleErrorBoundaryError(error, info) {
+    console.log("loading", error, info);
+  }
 
   return (
     <div>
       <Navbar />
-
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/users" element={<Users users={users} />} />
-        <Route path="*" element={<ErrorPage />} />
-      </Routes>
+      <ErrorBoundary
+        FallbackComponent={Fallback}
+        onError={handleErrorBoundaryError}
+      >
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/users" element={<Users users={users} />} />
+          <Route path="*" element={<ErrorPage />} />
+          <Route
+            path="/error boundary"
+            element={<ErrorBoundaryPage country="India" />}
+          />
+        </Routes>
+      </ErrorBoundary>
     </div>
   );
 }

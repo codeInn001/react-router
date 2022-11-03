@@ -8,6 +8,7 @@ function Navbar() {
         <Link to="/">Home</Link>
         <Link to="/users">Users</Link>
         <Link to="/about">About</Link>
+        <Link to="/error boundary">Error Boundary</Link>
     </nav>
   )
 }

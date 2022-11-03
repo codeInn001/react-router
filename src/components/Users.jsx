@@ -2,7 +2,6 @@ import React from "react";
 import { useState } from "react";
 
 function Users({ users }) {
-  console.log(users);
   const [position, setPosition] = useState(0);
 
   function nextUser() {
@@ -22,23 +21,24 @@ function Users({ users }) {
   }
 
   const current = users[position];
-  console.log(current);
   return (
     <div className="users">
       {current ? (
         <div className="card">
           <img src={current.picture.large} alt={current.name.first} />
-          <h3>{current.name.first} {current.name.last}</h3>
+          <h3>
+            {current.name.first} {current.name.last}
+          </h3>
           <h3>{current.email}</h3>
           <h3>{current.phone}</h3>
 
           <div className="btn-container">
-          <button onClick={prevUser} className="pagination prev">
-            Previous
-          </button>
-          <button onClick={nextUser} className="pagination next">
-            Next
-          </button>
+            <button onClick={prevUser} className="pagination prev">
+              Previous
+            </button>
+            <button onClick={nextUser} className="pagination next">
+              Next
+            </button>
           </div>
         </div>
       ) : (
