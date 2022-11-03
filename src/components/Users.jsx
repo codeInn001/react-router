@@ -27,7 +27,7 @@ function Users({ users }) {
     <div className="users">
       {current ? (
         <div className="card">
-          <img src={current.picture.large} alt="" />
+          <img src={current.picture.large} alt={current.name.first} />
           <h3>{current.name.first} {current.name.last}</h3>
           <h3>{current.email}</h3>
           <h3>{current.phone}</h3>
